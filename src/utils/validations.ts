@@ -20,3 +20,16 @@ export async function isSumParticipationLessOrEqualTo100(participation: number) 
 
   return true;
 }
+
+export function isFirstNameAndLastNameValid(firstName: string, lastName: string) {
+  const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
+
+  if (regex.test(firstName) && regex.test(lastName)) {
+    return true;
+  }
+
+  throw new ApolloError(
+    "Erro ao cadastrar usuário: firstName ou lastName possuem caracteres inválidos",
+    "BAD_REQUEST"
+  );
+}
