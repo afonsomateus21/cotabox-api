@@ -3,6 +3,8 @@ import User from "../models/user";
 import { CreateUserInput } from "../dtos/inputs/create-user-input";
 import { UserModelDTO } from "../dtos/models/user-model-dto";
 import { DeleteUserInput } from "../dtos/inputs/delete-user-input";
+import { ApolloError } from "apollo-server";
+import { GraphQLError } from "graphql";
 
 
 @Resolver()
@@ -29,11 +31,14 @@ export class UserResolver {
     const id = data.id;
 
     const wasDeleted = await User.deleteOne({ _id: id });
-
-    if (wasDeleted) {
+    
+    if (wasDeleted.deletedCount > 0) {
       return "Usuário deletado com sucesso";
     } else {
-      return "Erro ao deletar usuário";
+      throw new ApolloError(
+        "Erro ao deletar usuário",
+        "BAD_REQUEST"
+      )
     }
   }
 }
