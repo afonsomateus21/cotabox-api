@@ -4,8 +4,7 @@ import { CreateUserInput } from "../dtos/inputs/create-user-input";
 import { UserModelDTO } from "../dtos/models/user-model-dto";
 import { DeleteUserInput } from "../dtos/inputs/delete-user-input";
 import { ApolloError } from "apollo-server";
-import { GraphQLError } from "graphql";
-
+import { isSumParticipationLessOrEqualTo100 } from "../utils/validations";
 
 @Resolver()
 export class UserResolver {
@@ -16,14 +15,17 @@ export class UserResolver {
 
   @Mutation(() => UserModelDTO)
   async createUser(@Arg('data') data: CreateUserInput) {
-    const createdUser = new User({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      participation: data.participation,
-      createdAt: new Date()
-    });
+    let createdUser;
+    if (await isSumParticipationLessOrEqualTo100(data.participation)) {
+      createdUser = new User({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        participation: data.participation,
+        createdAt: new Date()
+      });
+    }
     
-    return await createdUser.save();
+    return await createdUser?.save();
   }
 
   @Mutation(() => String)
