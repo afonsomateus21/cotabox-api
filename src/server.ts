@@ -1,19 +1,34 @@
+import "reflect-metadata";
+
 import { ApolloServer } from "apollo-server";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
-import { typeDefs } from "./graphql/type-defs"
+import { buildSchema } from "type-graphql";
+import { UserResolver } from "./resolvers/users-resolver";
 
 configDotenv();
 
-const server = new ApolloServer({
-  typeDefs
-});
+async function bootstrap() {
+  const schema = await buildSchema({
+    resolvers: [
+      UserResolver
+    ],
+    emitSchemaFile: true
+  })
+
+  const server = new ApolloServer({
+    schema
+  });
+
+  const { url } = await server.listen();
+
+  console.log(`HTTP server running on ${url}`);
+}
 
 mongoose.connect(`${process.env.MONGODB_URL_CONNECTION}`)
   .then(() => {
     console.log("MongoDB connection successful");
-    return server.listen();
   })
-  .then((response) => {
-    console.log(`Server running at ${response.url}`)
+  .then(() => {
+    bootstrap();
   })
