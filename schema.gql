@@ -9,8 +9,13 @@ input CreateUserInput {
   participation: Float!
 }
 
+input DeleteUserInput {
+  id: String!
+}
+
 type Mutation {
   createUser(data: CreateUserInput!): UserModelDTO!
+  deleteUser(data: DeleteUserInput!): String!
 }
 
 type Query {
