@@ -36,7 +36,7 @@ export class UserResolver {
     const wasDeleted = await User.deleteOne({ _id: id });
     
     if (wasDeleted.deletedCount > 0) {
-      return "Usuário deletado com sucesso";
+      return "User deleted successfully.";
     } else {
       throw new ApolloError(
         "Error deleting user",
