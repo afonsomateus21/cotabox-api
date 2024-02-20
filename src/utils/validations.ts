@@ -13,7 +13,7 @@ export async function isSumParticipationLessOrEqualTo100(participation: number) 
 
   if (participationSum[0]?.sumParticipation + participation > 100) {
     throw new ApolloError(
-      "Erro ao cadastrar usuário: soma das participações maior que 100%",
+      "Create user error: Participation sum greater than 100%",
       "BAD_REQUEST"
     );
   }
@@ -29,7 +29,7 @@ export function isFirstNameAndLastNameValid(firstName: string, lastName: string)
   }
 
   throw new ApolloError(
-    "Erro ao cadastrar usuário: firstName ou lastName possuem caracteres inválidos",
+    "Create user error: firstName or lastName has invalid characters",
     "BAD_REQUEST"
   );
 }

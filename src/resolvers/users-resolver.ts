@@ -39,7 +39,7 @@ export class UserResolver {
       return "Usuário deletado com sucesso";
     } else {
       throw new ApolloError(
-        "Erro ao deletar usuário",
+        "Error deleting user",
         "BAD_REQUEST"
       )
     }
