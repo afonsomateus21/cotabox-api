@@ -11,7 +11,7 @@ export async function isSumParticipationLessOrEqualTo100(participation: number) 
     }
   ]);
 
-  if (participationSum[0].sumParticipation + participation > 100) {
+  if (participationSum[0]?.sumParticipation + participation > 100) {
     throw new ApolloError(
       "Erro ao cadastrar usuário: soma das participações maior que 100%",
       "BAD_REQUEST"
