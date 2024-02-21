@@ -15,7 +15,7 @@ $ git clone git@github.com:afonsomateus21/cotabox-api.git se utilizar SSH
 
 ### Método 1
 #### Pré requisitos
-Certifique-se também de ter o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados na sua máquina.
+Certifique-se de ter o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados na sua máquina.
 
 ##### Instruções
 ```bash
@@ -32,8 +32,8 @@ $ docker-compose up -d
 
 ## Método 2
 ### Pré requisitos
-Certifique-se de ter o [Node](https://nodejs.org/en/) e o [Git](https://git-scm.com) instalados, além de um gerenciador
-de pacotes como o [Yarn](https://yarnpkg.com/) ou o [NPM](https://www.npmjs.com/). Certifique-se também de ter um banco de dados [MongoDB](https://www.mongodb.com/) localmente em sua máquina.
+Certifique-se de ter o [Node](https://nodejs.org/en/) instalado, além de um gerenciador
+de pacotes como o [Yarn](https://yarnpkg.com/) ou o [NPM](https://www.npmjs.com/). Certifique-se também de ter um banco de dados [MongoDB](https://www.mongodb.com/) configurado em sua máquina.
 
 ### Configuração
 ```bash
