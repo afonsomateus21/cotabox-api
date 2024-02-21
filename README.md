@@ -6,37 +6,45 @@ Este projeto foi concebido como o desafio técnico da empresa Cotabox. Ele consi
 
 
 # Instalação
-### Pré requisitos
-Certifique-se de ter o [Node](https://nodejs.org/en/) e o [Git](https://git-scm.com) instalados, além de um gerenciador
-de pacotes como o [Yarn](https://yarnpkg.com/) ou o [NPM](https://www.npmjs.com/). Certifique-se também de ter o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados, ou configure um banco de dados [MongoDB](https://www.mongodb.com/) localmente em sua máquina.
-
-### Configuração
 ```bash
 # Clone o repositório
 $ git clone https://github.com/afonsomateus21/cotabox-api.git ou
 $ git clone git@github.com:afonsomateus21/cotabox-api.git se utilizar SSH
+```
+## Execução
 
+### Método 1
+#### Pré requisitos
+Certifique-se também de ter o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados na sua máquina.
+
+##### Instruções
+```bash
+# Crie um arquivo .env na raiz do projeto com as seguintes variáveis:
+MONGODB_LOCAL_URL_CONNECTION=mongodb://root:admin@mongo:27017/cotabox_db?authSource=admin
+API_PORT=3333
+
+# Execute o seguinte comando:
+$ docker-compose up -d
+
+# A aplicação ficará disponível na porta especificada, caso não seja possível ficará disponível na porta 4000
+```
+
+
+## Método 2
+### Pré requisitos
+Certifique-se de ter o [Node](https://nodejs.org/en/) e o [Git](https://git-scm.com) instalados, além de um gerenciador
+de pacotes como o [Yarn](https://yarnpkg.com/) ou o [NPM](https://www.npmjs.com/). Certifique-se também de ter um banco de dados [MongoDB](https://www.mongodb.com/) localmente em sua máquina.
+
+### Configuração
+```bash
 # Instale as dependências
 $ npm install ou yarn 
 
-#Crie um arquivo .env na raiz do projeto com a seguinte variável:
-MONGODB_LOCAL_URL_CONNECTION=mongodb://root:admin@localhost:27017/cotabox_db?authSource=admin
-
-#Caso tenha configurado um banco de dados localmente a URL de conexão ficará no seguinte padrão
+#Crie um arquivo .env na raiz do projeto com as seguinte variáveis:
 MONGODB_LOCAL_URL_CONNECTION=mongodb://username:password@host:port/database?authSource=admin
+API_PORT=3333
 
 OBS: Certifique-se de substituir username, password e database pelas credenciais do seu banco e que a variável de ambiente esteja com o nome correto.
-```
-
-### 🎨 Execução
-```bash
-# Execute o banco da aplicação
-$ docker-compose up -d
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev ou yarn dev
-
-# O aplicação ficará disponível na porta:4000 - acesse <http://localhost:4000>
 ```
 
 #  Deploy
