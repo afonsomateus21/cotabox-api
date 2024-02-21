@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./resolvers/users-resolver";
+import { checkCurrentEnvironment } from "./utils/config";
 
 configDotenv();
 
@@ -25,7 +26,9 @@ async function bootstrap() {
   console.log(`HTTP server running on ${url}`);
 }
 
-mongoose.connect(`${process.env.MONGODB_URL_CONNECTION}`)
+console.log(checkCurrentEnvironment());
+
+mongoose.connect(checkCurrentEnvironment())
   .then(() => {
     console.log("MongoDB connection successful");
   })
