@@ -21,7 +21,7 @@ async function bootstrap() {
     schema
   });
 
-  const { url } = await server.listen();
+  const { url } = await server.listen({ port: process.env.API_PORT || 4000 });
 
   console.log(`HTTP server running on ${url}`);
 }
